@@ -28,7 +28,7 @@ export default function Home() {
         console.log("expenses------------------->", expenses)
     }, [expenses])
 
-    
+
 
     // Delete expense function to delete the expense from the list
     const deleteExpense = (id) => {
@@ -46,8 +46,19 @@ export default function Home() {
                 <input value={name} type="text" placeholder='Expense Name' onChange={(e) => setName(e.target.value)} />
                 <input value={amount} type="number" placeholder='Expense Amount' onChange={(e) => setAmount(e.target.value)} />
                 <input value={date} type="date" placeholder='Expense Date' onChange={(e) => setDate(e.target.value)} />
-
                 <button onClick={handleAddExpense}>Add Expense</button>
+            </div>
+
+            {/* Expense list */}
+            <div className="expense-list">
+                {expenses.map((expense) => (
+                    <div key={expense.id} className="expense-item">
+                        <span>{expense.name}</span>
+                        <span>{expense.amount}</span>
+                        <span>{expense.date}</span>
+                        <button onClick={() => deleteExpense(expense.id)}>Delete</button>
+                    </div>
+                ))}
             </div>
         </div>
     )
