@@ -37,6 +37,19 @@ export default function Home() {
         setExpenses(expenses.filter(expense => expense.id !== id))
     }
 
+    // Filter expenses by amount and date
+    const filteredExpenses = expenses.filter(
+        (expense) =>
+            expense.name.toLowerCase().includes(filterText.toLowerCase()) &&
+            (filterText === '' || expense.amount.toString().includes(filterText)) &&
+            (filterDate === '' || expense.date.includes(filterDate))
+
+    )
+
+
+
+
+
 
 
 
@@ -51,20 +64,21 @@ export default function Home() {
                 <button onClick={handleAddExpense}>Add Expense</button>
             </div>
 
-
+            <p className='filter-text'>Filter by amount and date</p>
             {/* Filter by amount */}
             <div className="filter-section">
-                <input type="number" placeholder='Filter by name or amount' onChange={(e) => setFilterText(e.target.value)} />
+                <input type="text" placeholder='Filter by name or amount' onChange={(e) => setFilterText(e.target.value)} />
+
                 <input type="date" placeholder='Filter by date' onChange={(e) => setFilterDate(e.target.value)} />
             </div>
-
-
+   
+            <p className='filter-text'>List of expenses</p>
             {/* Expense list */}
             <div className="expense-list">
 
-                {expenses.length > 0 ? (
+                {filteredExpenses.length > 0 ? (
                     <ul>
-                        {expenses.map((expense) => (
+                        {filteredExpenses.map((expense) => (
                             <li key={expense.id} className="expense-item">
                                 <span>{expense.name}</span>
                                 <span>{expense.amount}</span>
@@ -73,12 +87,17 @@ export default function Home() {
                             </li>
                         ))}
                     </ul>
-                ) : <p>No expenses found</p>}
+                ) : <p className='no-expenses-found'>No expenses found</p>}
+            </div>
+
+            {/* Total amount */}
+            <div className="total-amount">
+                <p>Total amount: {expenses.reduce((total, expense) => total + parseInt(expense.amount), 0)}</p>
             </div>
 
 
-
         </div>
+
     )
 
 }

@@ -83,6 +83,36 @@ button:hover {
 }
 
 
+.no-expenses-found {
+    color: #343030;
+}
+.total-amount {
+    margin-top: 20px;
+    color: #151414;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.filter-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-text {
+    color: #343030;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+
+
+
+
+
+
+
 
 
 
