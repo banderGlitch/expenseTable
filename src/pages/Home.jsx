@@ -70,7 +70,6 @@ export default function Home() {
 
     return (
         <div className="expense-container">
-
             {/* Add expense form */}
             <div className="add-expense-form">
                 <input value={name} type="text" placeholder='Expense Name' onChange={(e) => setName(e.target.value)} />
@@ -78,7 +77,6 @@ export default function Home() {
                 <input value={date} type="date" placeholder='Expense Date' onChange={(e) => setDate(e.target.value)} />
                 <button onClick={handleAddExpense}>Add Expense</button>
             </div>
-
             <p className='filter-text'>Filter by amount and date</p>
             {/* Filter by amount */}
             <div className="filter-section">
@@ -109,8 +107,6 @@ export default function Home() {
             <div className="total-amount">
                 <p>Total amount: {expenses.reduce((total, expense) => total + parseInt(expense.amount), 0)}</p>
             </div>
-
-
         </div>
 
     )
