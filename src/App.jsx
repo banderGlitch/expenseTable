@@ -1,9 +1,12 @@
 import './App.css'
-
+import Home from './pages/Home'
 function App() {
   return (
     <>
-      <h1>Expense Table</h1>
+      <div className="app-container"> 
+        <h1>Expense Tracker</h1>
+        <Home />
+      </div>
     </>
   )
 }
