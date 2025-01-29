@@ -25,13 +25,3 @@
 
 // - Should give the message if there are no results found for the search
 
-
-
-
-import React from 'react'
-
-export default function Table() {
-  return (
-    <div></div>
-  )
-}

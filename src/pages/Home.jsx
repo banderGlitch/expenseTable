@@ -38,24 +38,39 @@ export default function Home() {
     }
 
     // Filter expenses by amount and date
-    const filteredExpenses = expenses.filter(
-        (expense) =>
-            expense.name.toLowerCase().includes(filterText.toLowerCase()) &&
-            (filterText === '' || expense.amount.toString().includes(filterText)) &&
-            (filterDate === '' || expense.date.includes(filterDate))
+    // const filteredExpenses = expenses.filter((expense) => {
+    //     const nameMatch = expense.name.toLowerCase().includes(filterText.toLowerCase());
+    //     const amountMatch = filterText === '' || expense.amount.toString().includes(filterText);
+    //     const dateMatch = filterDate === '' || expense.date === filterDate;
+    
+    //     return nameMatch && amountMatch && dateMatch;
+    // });
 
-    )
+    const filteredExpenses = expenses.filter((expense) => {
+       const lowerCaseFilter = filterText.toLowerCase().trim()
+
+       const nameMatch = expense.name.toLowerCase().includes(lowerCaseFilter)
+       const amountMatch = !isNaN(filterText) && filterText !== '' ? expense.amount.toString().includes(filterText) : true
+       const dateMatch = filterDate === '' || expense.date === filterDate
+       return nameMatch && amountMatch && dateMatch
+    })
+
+    useEffect(() => {
+        console.log("filterText------------------->", filterText)
+    }, [filterText])
 
 
 
-
-
+    useEffect(() => {
+        console.log("filterexpenses------------------->", filteredExpenses)
+    }, [filteredExpenses])
 
 
 
 
     return (
         <div className="expense-container">
+
             {/* Add expense form */}
             <div className="add-expense-form">
                 <input value={name} type="text" placeholder='Expense Name' onChange={(e) => setName(e.target.value)} />
